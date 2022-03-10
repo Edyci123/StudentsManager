@@ -31,6 +31,7 @@ public class RegisterPage {
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(firstName.getText() + " " + lastName.getText() + " " + email.getText());
+				DatabaseQueries.addNewStudent(new Student(firstName.getText(), lastName.getText(), email.getText()));
 			}
 		}); 
 		
@@ -38,7 +39,7 @@ public class RegisterPage {
 		button2.setBounds(287, 400, 175, 50);
 		button2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.getContentPane().setBackground(Color.YELLOW);
+				frame.getContentPane().setBackground(Color.BLACK);
 			}
 		});
 		
