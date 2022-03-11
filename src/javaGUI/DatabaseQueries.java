@@ -1,6 +1,7 @@
 package javaGUI;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DatabaseQueries {
 	private static String username;
@@ -21,8 +22,8 @@ public class DatabaseQueries {
 			stmt = conn.createStatement();
 			String sql = "CREATE TABLE students " 
 					+ "(id INTEGER NOT	 NULL AUTO_INCREMENT, "
-					+ "firstname VARCHAR(255), "
-					+ "lastname VARCHAR(255), "
+					+ "firstName VARCHAR(255), "
+					+ "lastName VARCHAR(255), "
 					+ "email VARCHAR(255), "
 					+ "PRIMARY KEY ( id ))";
 			stmt.executeUpdate(sql);
@@ -38,7 +39,7 @@ public class DatabaseQueries {
 		Connection conn = null;
 		Statement stmt = null;
 		
-		if (studentAlreadyExtists(s.getFirstname(), s.getLastname())) {
+		if (studentAlreadyExtists(s.getFirstName(), s.getLastName())) {
 			System.out.println("Student already exists!");
 			return;
 		}
@@ -46,8 +47,8 @@ public class DatabaseQueries {
 		try {
 			conn = DriverManager.getConnection(url, username, password);
 			stmt = conn.createStatement();
-			String query = "INSERT INTO students (firstname, lastname, email) "
-					+ String.format("VALUES ('%s', '%s', '%s')", s.getFirstname(), s.getLastname(), s.getEmail());
+			String query = "INSERT INTO students (firstName, lastName, email) "
+					+ String.format("VALUES ('%s', '%s', '%s')", s.getFirstName(), s.getLastName(), s.getEmail());
 			
 			stmt.execute(query);
 		} catch (SQLException e) {
@@ -60,25 +61,29 @@ public class DatabaseQueries {
 	public static boolean studentAlreadyExtists(String firstname, String lastname) {
 		Connection conn = null;
 		Statement stmt = null;
+		boolean res = false;
 		
 		try {
 			conn = DriverManager.getConnection(url, username, password);
 			stmt = conn.createStatement();
 			String query = String.format("SELECT 1 FROM students WHERE firstname = '%s' AND lastname = '%s'", firstname, lastname);    
-			boolean res = stmt.execute(query);
-;			closeConnections(conn, stmt);
-			return res;
+			ResultSet rs = stmt.executeQuery(query);
+			if (rs.next()) {
+				res = true;
+			}
+			closeConnections(conn, stmt);
 		} catch (SQLException e) {
 			System.out.println(e);
 		} finally {
 			closeConnections(conn, stmt);
 		}
-		return false;
+		return res;
 	}
 	
-	public static void showStudents() {
+	public static ArrayList<Student> getStudents() {
 		Connection conn = null;
 		Statement stmt = null;
+		ArrayList<Student> res = new ArrayList<Student>();
 		
 		try {
 			conn = DriverManager.getConnection(url, username, password);
@@ -91,6 +96,7 @@ public class DatabaseQueries {
 				String firstname = rs.getString("firstname");
 				String lastname = rs.getString("lastname");
 				String email = rs.getString("email");
+				res.add(new Student(firstname, lastname, email));
 				System.out.println(String.format("%s %s %s %s", id, firstname, lastname, email));
 			}
 			
@@ -100,6 +106,7 @@ public class DatabaseQueries {
 			closeConnections(conn, stmt);
 		}
 		
+		return res;
 	}
 	
 	private static void closeConnections(Connection conn, Statement stmt) {

@@ -4,12 +4,13 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class RegisterPage {	
+	
 	private JFrame frame = new JFrame();
 	private JTextField firstName = new JTextField(15);
 	private JTextField lastName = new JTextField(15);
 	private JTextField email = new JTextField(15);
 	
-	RegisterPage(String username, String password) {
+	RegisterPage() {
 		prepareGUI();
 		prepareButtons();
 		prepareTextFields();
@@ -38,9 +39,8 @@ public class RegisterPage {
 		button2.setBounds(287, 400, 175, 50);
 		button2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DatabaseQueries.showStudents();
+				new ShowStudentsPage();
 				frame.dispose();
-				new ShowStudents();
 			}
 		});
 		
