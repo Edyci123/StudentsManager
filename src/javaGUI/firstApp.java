@@ -1,7 +1,5 @@
 package javaGUI;
 
-import java.util.Scanner;
-
 public class firstApp {
 
 	public static void main(String[] args) {
@@ -17,6 +15,7 @@ public class firstApp {
 		String username = "edyci123";
 		String password = "123qwe";
 		DatabaseQueries.setDatabaseCredentials(username, password);
+		//DatabaseQueries.createNewTabel("students");
 		
 		new RegisterPage(username, password);
 	}
