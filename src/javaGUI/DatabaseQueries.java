@@ -3,7 +3,7 @@ package javaGUI;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class DatabaseQueries {
+public abstract class DatabaseQueries {
 	private static String username;
 	private static String password;
 	private static final String url = "jdbc:mysql://localhost:3306/firstsql";
@@ -21,7 +21,7 @@ public class DatabaseQueries {
 			conn = DriverManager.getConnection(url, username, password);
 			stmt = conn.createStatement();
 			String sql = "CREATE TABLE students " 
-					+ "(id INTEGER NOT	 NULL AUTO_INCREMENT, "
+					+ "(id INTEGER NOT NULL AUTO_INCREMENT, "
 					+ "firstName VARCHAR(255), "
 					+ "lastName VARCHAR(255), "
 					+ "email VARCHAR(255), "
@@ -137,5 +137,4 @@ public class DatabaseQueries {
 	public static String getUrl() {
 		return url;
 	}
-
 }

@@ -57,8 +57,8 @@ public class RegisterPage {
 //		
 //		panel.setBounds(50, 100, 250, 25);
 
-		frame.add(textFields.createPanel(new JLabel("Firstname"), firstName, new Dimensions(50, 100, 250, 25)));
-		frame.add(textFields.createPanel(new JLabel("Lastname"), lastName, new Dimensions(50, 150, 250, 25)));
-		frame.add(textFields.createPanel(new JLabel("Email"), email, new Dimensions(50, 200, 250, 25)));	
+		frame.add(TextFields.createPanel(new JLabel("Firstname"), firstName, new Dimensions(50, 100, 250, 25)));
+		frame.add(TextFields.createPanel(new JLabel("Lastname"), lastName, new Dimensions(50, 150, 250, 25)));
+		frame.add(TextFields.createPanel(new JLabel("Email"), email, new Dimensions(50, 200, 250, 25)));	
 	}
 }
