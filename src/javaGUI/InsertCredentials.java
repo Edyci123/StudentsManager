@@ -30,7 +30,7 @@ public class InsertCredentials {
 		button1.setBounds(140, 400, 200, 50);
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DatabaseQueries.setDatabaseCredentials(username.getText(), password.getText());
+				DatabaseQueries.setDatabaseCredentials(username.getText(), new String(password.getPassword()));
 				new RegisterPage();
 				frame.dispose();
 			}
