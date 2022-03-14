@@ -39,7 +39,7 @@ public abstract class DatabaseQueries {
 		Connection conn = null;
 		Statement stmt = null;
 		
-		if (studentAlreadyExtists(s.getFirstName(), s.getLastName())) {
+		if (studentAlreadyExtists(s.getFirstName(), s.getLastName(), s.getEmail())) {
 			System.out.println("Student already exists!");
 			return;
 		}
@@ -58,7 +58,25 @@ public abstract class DatabaseQueries {
 		}	
 	}
 	
-	public static boolean studentAlreadyExtists(String firstname, String lastname) {
+	public static void updateStudentEmail (String firstName, String lastName, String newEmail) {
+		Connection conn = null;
+		Statement stmt = null;
+		
+		try {
+			conn = DriverManager.getConnection(url, username, password);
+			stmt = conn.createStatement();
+			String query = "UPDATE students"
+					+ String.format("SET email = '%s'", newEmail) 
+					+ String.format("WHERE firstName = '%s' lastName = '%s'", firstName, lastName);
+		} catch (SQLException e) {
+			System.out.println(e);
+		} finally {
+			closeConnections(conn, stmt);
+		}
+		
+	}
+	
+	public static boolean studentAlreadyExtists(String firstName, String lastName, String email) {
 		Connection conn = null;
 		Statement stmt = null;
 		boolean res = false;
@@ -66,7 +84,7 @@ public abstract class DatabaseQueries {
 		try {
 			conn = DriverManager.getConnection(url, username, password);
 			stmt = conn.createStatement();
-			String query = String.format("SELECT 1 FROM students WHERE firstname = '%s' AND lastname = '%s'", firstname, lastname);    
+			String query = String.format("SELECT 1 FROM students WHERE firstname = '%s' AND lastname = '%s' OR email = '%s'", firstName, lastName, email);    
 			ResultSet rs = stmt.executeQuery(query);
 			if (rs.next()) {
 				res = true;

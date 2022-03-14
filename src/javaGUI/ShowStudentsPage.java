@@ -55,7 +55,7 @@ public class ShowStudentsPage {
 	
 	private void prepareButtons() {
 		JButton button1 = new JButton("Back to Register Page");
-		button1.setBounds(140, 400, 200, 50);
+		button1.setBounds(25, 400, 175, 50);
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new RegisterPage();
@@ -63,7 +63,17 @@ public class ShowStudentsPage {
 			}
 		});
 		
+		JButton button2 = new JButton("Update a student!");
+		button2.setBounds(287, 400, 175, 50);
+		button2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new UpdateStudentPage();
+				frame.dispose();
+			}
+		});
+		
 		frame.add(button1);
+		frame.add(button2);
 	}
 	
 }

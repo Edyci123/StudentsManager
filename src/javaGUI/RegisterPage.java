@@ -44,8 +44,18 @@ public class RegisterPage {
 			}
 		});
 		
+		JButton button3 = new JButton("Delete a Student");
+		//TODO setBounds
+		button3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new DeleteStudentPage();
+				frame.dispose();
+			}
+		});
+		
 		frame.add(button1);
 		frame.add(button2);
+		frame.add(button3);
 	}
 	
 	private void prepareTextFields() {		
