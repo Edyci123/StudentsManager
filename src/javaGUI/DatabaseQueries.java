@@ -58,6 +58,23 @@ public abstract class DatabaseQueries {
 		}	
 	}
 	
+	public static void deleteStudent(String firstName, String lastName) {
+		Connection conn = null;
+		Statement stmt = null;
+		
+		try {
+			conn = DriverManager.getConnection(url, username, password);
+			stmt = conn.createStatement();
+			String query = "DELETE FORM students WHERE"
+					+ String.format("firstName = '%s' AND lastName = '%s'", firstName, lastName);
+			stmt.execute(query);
+		} catch (SQLException e) {
+			System.out.println(e);
+		} finally {
+			closeConnections(conn, stmt);
+		}
+	}
+	
 	public static void updateStudentEmail (String firstName, String lastName, String newEmail) {
 		Connection conn = null;
 		Statement stmt = null;

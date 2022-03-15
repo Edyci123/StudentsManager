@@ -27,7 +27,7 @@ public class RegisterPage {
 	
 	private void prepareButtons() {
 		JButton button1 = new JButton("Register a new student!");
-		button1.setBounds(25, 400, 175, 50);
+		button1.setBounds(25, 325, 175, 50);
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(firstName.getText() + " " + lastName.getText() + " " + email.getText());
@@ -36,7 +36,7 @@ public class RegisterPage {
 		}); 
 		
 		JButton button2 = new JButton("Show students!");
-		button2.setBounds(287, 400, 175, 50);
+		button2.setBounds(287, 325, 175, 50);
 		button2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new ShowStudentsPage();
@@ -45,7 +45,7 @@ public class RegisterPage {
 		});
 		
 		JButton button3 = new JButton("Delete a Student");
-		//TODO setBounds
+		button3.setBounds(25, 400, 175, 50);
 		button3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new DeleteStudentPage();
@@ -53,9 +53,20 @@ public class RegisterPage {
 			}
 		});
 		
+		JButton button4 = new JButton("Update Student");
+		button4.setBounds(287, 400, 175, 50);
+		button4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new UpdateStudentPage();
+				frame.dispose();
+			}
+		});
+		
+		
 		frame.add(button1);
 		frame.add(button2);
 		frame.add(button3);
+		frame.add(button4);
 	}
 	
 	private void prepareTextFields() {		
@@ -67,8 +78,8 @@ public class RegisterPage {
 //		
 //		panel.setBounds(50, 100, 250, 25);
 
-		frame.add(TextFields.createPanel(new JLabel("Firstname"), firstName, new Dimensions(50, 100, 250, 25)));
-		frame.add(TextFields.createPanel(new JLabel("Lastname"), lastName, new Dimensions(50, 150, 250, 25)));
+		frame.add(TextFields.createPanel(new JLabel("First name"), firstName, new Dimensions(50, 100, 250, 25)));
+		frame.add(TextFields.createPanel(new JLabel("Last name"), lastName, new Dimensions(50, 150, 250, 25)));
 		frame.add(TextFields.createPanel(new JLabel("Email"), email, new Dimensions(50, 200, 250, 25)));	
 	}
 }
