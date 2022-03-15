@@ -85,6 +85,7 @@ public abstract class DatabaseQueries {
 			String query = "UPDATE students"
 					+ String.format("SET email = '%s'", newEmail) 
 					+ String.format("WHERE firstName = '%s' lastName = '%s'", firstName, lastName);
+			stmt.execute(query);
 		} catch (SQLException e) {
 			System.out.println(e);
 		} finally {
