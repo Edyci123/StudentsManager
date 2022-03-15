@@ -1,4 +1,4 @@
-package javaGUI;
+package utils;
 
 public class Dimensions {
 	public int x;
@@ -6,7 +6,7 @@ public class Dimensions {
 	public int width;
 	public int height;
 	
-	Dimensions(int x, int y, int width, int height) {
+	public Dimensions(int x, int y, int width, int height) {
 		this.x = x;
 		this.y = y;
 		this.width = width;

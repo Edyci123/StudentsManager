@@ -1,9 +1,12 @@
-package javaGUI;
+package pages;
 
-import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
+
+import utils.DatabaseQueries;
+import utils.Dimensions;
+import utils.TextFields;
 
 public class UpdateStudentPage {
 	private static JFrame frame = new JFrame();

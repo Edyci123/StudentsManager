@@ -1,7 +1,11 @@
-package javaGUI;
+package pages;
 
 import javax.swing.*;
-import java.awt.*;
+
+import utils.DatabaseQueries;
+import utils.Dimensions;
+import utils.TextFields;
+
 import java.awt.event.*;
 
 public class DeleteStudentPage {

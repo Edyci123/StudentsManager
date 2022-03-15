@@ -1,16 +1,20 @@
-package javaGUI;
+package pages;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import utils.DatabaseQueries;
+import utils.Dimensions;
+import utils.TextFields;
+
 public class InsertCredentials {
 	private static JFrame frame = new JFrame();
 	private static JTextField username = new JTextField(15);
 	private static JPasswordField password = new JPasswordField(15);
 	
-	InsertCredentials() {
+	public InsertCredentials() {
 		prepareGUI();
 		prepareButtons();
 		prepareTextFields();

@@ -1,4 +1,4 @@
-package javaGUI;
+package pages;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,6 +6,9 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+
+import utils.DatabaseQueries;
+import utils.Student;
 
 public class ShowStudentsPage {
 	private JFrame frame = new JFrame();

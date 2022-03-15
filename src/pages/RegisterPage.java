@@ -1,6 +1,12 @@
-package javaGUI;
+package pages;
 
 import javax.swing.*;
+
+import utils.DatabaseQueries;
+import utils.Dimensions;
+import utils.Student;
+import utils.TextFields;
+
 import java.awt.event.*;
 
 public class RegisterPage {	

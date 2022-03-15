@@ -1,11 +1,11 @@
-package javaGUI;
+package utils;
 
 public class Student {
 	private String firstName;
 	private String lastName;
 	private String email;
 	
-	Student(String firstName, String lastName, String email) {
+	public Student(String firstName, String lastName, String email) {
 		this.setFirstName(firstName);
 		this.setLastName(lastName);
 		this.setEmail(email);

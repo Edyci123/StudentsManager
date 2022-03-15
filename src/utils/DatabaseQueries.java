@@ -1,4 +1,4 @@
-package javaGUI;
+package utils;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -65,7 +65,7 @@ public abstract class DatabaseQueries {
 		try {
 			conn = DriverManager.getConnection(url, username, password);
 			stmt = conn.createStatement();
-			String query = "DELETE FORM students WHERE"
+			String query = "DELETE FROM students WHERE "
 					+ String.format("firstName = '%s' AND lastName = '%s'", firstName, lastName);
 			stmt.execute(query);
 		} catch (SQLException e) {
@@ -82,9 +82,9 @@ public abstract class DatabaseQueries {
 		try {
 			conn = DriverManager.getConnection(url, username, password);
 			stmt = conn.createStatement();
-			String query = "UPDATE students"
-					+ String.format("SET email = '%s'", newEmail) 
-					+ String.format("WHERE firstName = '%s' lastName = '%s'", firstName, lastName);
+			String query = "UPDATE students "
+					+ String.format("SET email = '%s' ", newEmail) 
+					+ String.format("WHERE firstName = '%s' AND lastName = '%s'", firstName, lastName);
 			stmt.execute(query);
 		} catch (SQLException e) {
 			System.out.println(e);
