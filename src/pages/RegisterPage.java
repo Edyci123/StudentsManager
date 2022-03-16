@@ -36,8 +36,11 @@ public class RegisterPage {
 		button1.setBounds(25, 325, 175, 50);
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(firstName.getText() + " " + lastName.getText() + " " + email.getText());
-				DatabaseQueries.addNewStudent(new Student(firstName.getText(), lastName.getText(), email.getText()));
+				if (Student.check(new Student(firstName.getText(), lastName.getText(), email.getText()))) {
+					DatabaseQueries.addNewStudent(new Student(firstName.getText(), lastName.getText(), email.getText()));					
+				} else {
+					System.out.println("Incorrect data introduced!");
+				}
 			}
 		}); 
 		
