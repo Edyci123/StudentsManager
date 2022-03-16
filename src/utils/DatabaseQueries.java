@@ -51,6 +51,7 @@ public abstract class DatabaseQueries {
 					+ String.format("VALUES ('%s', '%s', '%s')", s.getFirstName(), s.getLastName(), s.getEmail());
 			
 			stmt.execute(query);
+			MailUtil.sendRegisterEmail(s.getFirstName(), s.getLastName(), s.getEmail());
 		} catch (SQLException e) {
 			System.out.println(e);
 		} finally {
