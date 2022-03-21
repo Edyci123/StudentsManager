@@ -13,24 +13,24 @@ public abstract class DatabaseQueries {
 		DatabaseQueries.setPassword(password);
 	}
 	
-	public static void createNewTabel(String tableName) {
+	public static void createNewTabel(String tableName) { // creating a table for storing the students
 		Connection conn = null;
 		Statement stmt = null;
 		
 		try {
-			conn = DriverManager.getConnection(url, username, password);
-			stmt = conn.createStatement();
-			String sql = "CREATE TABLE students " 
+			conn = DriverManager.getConnection(url, username, password); // getting a connection to the database
+			stmt = conn.createStatement(); // creating a statement
+			String sql = "CREATE TABLE students " //creating a query
 					+ "(id INTEGER NOT NULL AUTO_INCREMENT, "
 					+ "firstName VARCHAR(255), "
 					+ "lastName VARCHAR(255), "
 					+ "email VARCHAR(255), "
 					+ "PRIMARY KEY ( id ))";
-			stmt.executeUpdate(sql);
+			stmt.executeUpdate(sql); //executing the query 
 		} catch (SQLException e) {
-			System.out.println(e);
+			System.out.println(e); //printing the error
 		} finally {
-			closeConnections(conn, stmt);
+			closeConnections(conn, stmt); // closing the connections that we don't create too many of them 
 		}
 		
 	}
@@ -39,7 +39,7 @@ public abstract class DatabaseQueries {
 		Connection conn = null;
 		Statement stmt = null;
 		
-		if (studentAlreadyExtists(s.getFirstName(), s.getLastName(), s.getEmail())) {
+		if (studentAlreadyExtists(s.getFirstName(), s.getLastName(), s.getEmail())) { //checking the integrity of the answer
 			System.out.println("Student already exists!");
 			return;
 		}

@@ -13,6 +13,7 @@ public class Student {
 		this.setEmail(email);
 	}
 	
+	// checking if the first name, last name and the email are written properly
 	public static boolean check (Student s) {
 		if (Pattern.matches("[0-9]+", s.getFirstName()) == true) {
 			return false;

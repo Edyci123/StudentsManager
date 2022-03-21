@@ -8,6 +8,7 @@ public class Music {
 	
 	public static void setMusic() {
 		try {
+			// parsing a file so extract the music tracks
 			File file = new File("MusicFile/Music.txt");
 			FileReader fr = new FileReader(file);
 			BufferedReader br = new BufferedReader(fr);

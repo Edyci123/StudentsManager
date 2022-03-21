@@ -32,8 +32,10 @@ public class InsertCredentials {
 	private void prepareButtons() {
 		JButton button1 = new JButton("Register");
 		button1.setBounds(140, 400, 200, 50);
-		button1.addActionListener(new ActionListener() {
+		button1.addActionListener(new ActionListener() { // adding action listener to a button
 			public void actionPerformed(ActionEvent e) {
+				// if you have no table names students uncomment ->
+				// DatabaseQueries.createNewTabel("students");
 				DatabaseQueries.setDatabaseCredentials(username.getText(), new String(password.getPassword()));
 				new RegisterPage();
 				frame.dispose();

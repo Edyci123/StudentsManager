@@ -23,7 +23,7 @@ public class RegisterPage {
 		frame.setVisible(true);
 	}
 	
-	private void prepareGUI() {
+	private void prepareGUI() { // initialize the frame
 		frame.setSize(500, 500);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -87,7 +87,7 @@ public class RegisterPage {
 //		
 //		panel.setBounds(50, 100, 250, 25);
 
-		frame.add(TextFields.createPanel(new JLabel("First name"), firstName, new Dimensions(50, 100, 250, 25)));
+		frame.add(TextFields.createPanel(new JLabel("First name"), firstName, new Dimensions(50, 100, 250, 25))); // adding panels with label and text field to the frame
 		frame.add(TextFields.createPanel(new JLabel("Last name"), lastName, new Dimensions(50, 150, 250, 25)));
 		frame.add(TextFields.createPanel(new JLabel("Email"), email, new Dimensions(50, 200, 250, 25)));	
 	}
