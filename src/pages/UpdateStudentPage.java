@@ -35,9 +35,6 @@ public class UpdateStudentPage {
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DatabaseQueries.updateStudentEmail(firstName.getText(), lastName.getText(), newEmail.getText());
-				firstName.setText(null);
-				lastName.setText(null);
-				newEmail.setText(null);
 			}
 		});
 		

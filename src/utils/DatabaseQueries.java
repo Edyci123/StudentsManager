@@ -3,6 +3,8 @@ package utils;
 import java.sql.*;
 import java.util.ArrayList;
 
+import javax.swing.*;
+
 public abstract class DatabaseQueries {
 	private static String username;
 	private static String password;
@@ -52,8 +54,13 @@ public abstract class DatabaseQueries {
 			
 			stmt.execute(query);
 			MailUtil.sendRegisterEmail(s.getFirstName(), s.getLastName(), s.getEmail());
+			JOptionPane.showMessageDialog(new JFrame(),
+					"Succesfully registered!");
 		} catch (SQLException e) {
-			System.out.println(e);
+			JOptionPane.showMessageDialog(new JFrame(),
+					e.toString(),
+					"Error",
+					JOptionPane.ERROR_MESSAGE);
 		} finally {
 			closeConnections(conn, stmt);
 		}	
@@ -69,8 +76,13 @@ public abstract class DatabaseQueries {
 			String query = "DELETE FROM students WHERE "
 					+ String.format("firstName = '%s' AND lastName = '%s'", firstName, lastName);
 			stmt.execute(query);
+			JOptionPane.showMessageDialog(new JFrame(),
+					"Succesfully deleted!");
 		} catch (SQLException e) {
-			System.out.println(e);
+			JOptionPane.showMessageDialog(new JFrame(),
+					e.toString(),
+					"Error",
+					JOptionPane.ERROR_MESSAGE);
 		} finally {
 			closeConnections(conn, stmt);
 		}
@@ -87,8 +99,13 @@ public abstract class DatabaseQueries {
 					+ String.format("SET email = '%s' ", newEmail) 
 					+ String.format("WHERE firstName = '%s' AND lastName = '%s'", firstName, lastName);
 			stmt.execute(query);
+			JOptionPane.showMessageDialog(new JFrame(),
+					"Succesfully updated!");
 		} catch (SQLException e) {
-			System.out.println(e);
+			JOptionPane.showMessageDialog(new JFrame(),
+					e.toString(),
+					"Error",
+					JOptionPane.ERROR_MESSAGE);
 		} finally {
 			closeConnections(conn, stmt);
 		}
@@ -110,7 +127,10 @@ public abstract class DatabaseQueries {
 			}
 			closeConnections(conn, stmt);
 		} catch (SQLException e) {
-			System.out.println(e);
+			JOptionPane.showMessageDialog(new JFrame(),
+					e.toString(),
+					"Error",
+					JOptionPane.ERROR_MESSAGE);
 		} finally {
 			closeConnections(conn, stmt);
 		}

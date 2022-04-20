@@ -1,6 +1,6 @@
 package utils;
 
-import java.util.regex.Pattern;
+//import java.util.regex.Pattern;
 
 public class Student {
 	private String firstName;
@@ -15,15 +15,14 @@ public class Student {
 	
 	// checking if the first name, last name and the email are written properly
 	public static boolean check (Student s) {
-		if (Pattern.matches("[0-9]+", s.getFirstName()) == true) {
+		if (!s.getFirstName().matches("[a-zA-Z]+")) {
 			return false;
 		} 
-		if (Pattern.matches("[0-9]+", s.getLastName()) == true) {
+		if (!s.getLastName().matches("[a-zA-Z]+")) {
 			return false;
 		}
 		String regex = "^(.+)@(.+)$";
-		Pattern pattern = Pattern.compile(regex);
-		return (boolean)pattern.matcher(s.getEmail()).matches();
+		return s.getEmail().matches(regex);
 	}
 
 	public String getFirstName() {

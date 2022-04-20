@@ -37,9 +37,13 @@ public class RegisterPage {
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (Student.check(new Student(firstName.getText(), lastName.getText(), email.getText()))) {
-					DatabaseQueries.addNewStudent(new Student(firstName.getText(), lastName.getText(), email.getText()));					
+					DatabaseQueries.addNewStudent(new Student(firstName.getText(), lastName.getText(), email.getText()));
+					
 				} else {
-					System.out.println("Incorrect data introduced!");
+					JOptionPane.showMessageDialog(new JFrame(),
+							"Wrong data introduced!",
+							"Error",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}); 
