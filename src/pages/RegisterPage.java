@@ -4,34 +4,27 @@ import javax.swing.*;
 
 import utils.DatabaseQueries;
 import utils.Dimensions;
+import utils.Page;
 import utils.Student;
 import utils.TextFields;
 
 import java.awt.event.*;
 
-public class RegisterPage {	
-	
-	private JFrame frame = new JFrame();
+@SuppressWarnings("serial")
+public class RegisterPage extends Page {	
 	private JTextField firstName = new JTextField(15);
 	private JTextField lastName = new JTextField(15);
 	private JTextField email = new JTextField(15);
 	
-	RegisterPage() {
-		prepareGUI();
-		prepareButtons();
-		prepareTextFields();
-		frame.setVisible(true);
+	public RegisterPage() {
+		super();
+		prepareButtons(this);
+		prepareTextFields(this);
+		this.setVisible(true);
 	}
 	
-	private void prepareGUI() { // initialize the frame
-		frame.setSize(500, 500);
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		frame.setResizable(false);
-	}
-	
-	private void prepareButtons() {
+	@Override
+	public void prepareButtons(JFrame frame) {
 		JButton button1 = new JButton("Register a new student!");
 		button1.setBounds(25, 325, 175, 50);
 		button1.addActionListener(new ActionListener() {
@@ -53,7 +46,7 @@ public class RegisterPage {
 		button2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new ShowStudentsPage();
-				frame.dispose();
+				dispose();
 			}
 		});
 		
@@ -82,17 +75,14 @@ public class RegisterPage {
 		frame.add(button4);
 	}
 	
-	private void prepareTextFields() {		
-//		JPanel panel = new JPanel(new BorderLayout());
-//		JLabel label = new JLabel("Firstname");
-//		
-//		panel.add(label, BorderLayout.WEST);
-//		panel.add(firstName, BorderLayout.EAST);
-//		
-//		panel.setBounds(50, 100, 250, 25);
-
+	@Override
+	public void prepareTextFields(JFrame frame) {	
 		frame.add(TextFields.createPanel(new JLabel("First name"), firstName, new Dimensions(50, 100, 250, 25))); // adding panels with label and text field to the frame
 		frame.add(TextFields.createPanel(new JLabel("Last name"), lastName, new Dimensions(50, 150, 250, 25)));
 		frame.add(TextFields.createPanel(new JLabel("Email"), email, new Dimensions(50, 200, 250, 25)));	
+	}
+
+	@Override
+	public void prepareTable(JFrame frame) {
 	}
 }

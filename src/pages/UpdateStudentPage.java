@@ -6,30 +6,24 @@ import javax.swing.*;
 
 import utils.DatabaseQueries;
 import utils.Dimensions;
+import utils.Page;
 import utils.TextFields;
 
-public class UpdateStudentPage {
-	private static JFrame frame = new JFrame();
+@SuppressWarnings("serial")
+public class UpdateStudentPage extends Page {
 	private static JTextField firstName = new JTextField(15);
 	private static JTextField lastName = new JTextField(15);
 	private static JTextField newEmail = new JTextField(15);
 	
 	UpdateStudentPage() {
-		prepareGUI();
-		prepareButtons();
-		prepareTextFields();
-		frame.setVisible(true);
+		super();
+		prepareButtons(this);
+		prepareTextFields(this);
+		this.setVisible(true);
 	}
 	
-	private static void prepareGUI() {
-		frame.setSize(500, 500);
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		frame.setResizable(false);
-	}
-	
-	private static void prepareButtons() {
+	@Override
+	public void prepareButtons(JFrame frame) {
 		JButton button1 = new JButton("Update");
 		button1.setBounds(25, 400, 175, 50);
 		button1.addActionListener(new ActionListener() {
@@ -51,10 +45,15 @@ public class UpdateStudentPage {
 		frame.add(button2);
 	}
 	
-	private static void prepareTextFields() {
+	@Override
+	public void prepareTextFields(JFrame frame) {
 		frame.add(TextFields.createPanel(new JLabel("First name"), firstName, new Dimensions(50, 100, 250, 25)));
 		frame.add(TextFields.createPanel(new JLabel("Last name"), lastName, new Dimensions(50, 150, 250, 25)));
 		frame.add(TextFields.createPanel(new JLabel("New Email"), newEmail, new Dimensions(50, 200, 250, 25)));	
+	}
+
+	@Override
+	public void prepareTable(JFrame frame) {
 	}
 	
 }

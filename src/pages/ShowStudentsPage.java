@@ -8,27 +8,20 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import utils.DatabaseQueries;
+import utils.Page;
 import utils.Student;
 
-public class ShowStudentsPage {
-	private JFrame frame = new JFrame();
-	
-	ShowStudentsPage() {
-		prepareGUI();
-		prepareTable();
-		prepareButtons();
-		frame.setVisible(true);
+@SuppressWarnings("serial")
+public class ShowStudentsPage extends Page {
+	public ShowStudentsPage() {
+		super();
+		prepareTable(this);
+		prepareButtons(this);
+		this.setVisible(true);
 	}
 	
-	private void prepareGUI() {
-		frame.setSize(500, 500);
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		frame.setResizable(false);
-	}
-	
-	private void prepareTable() {
+	@Override
+	public void prepareTable(JFrame frame) {
 		String col[] = new String[] {"Index", "Firstname", "Lastname", "Email"};
 		DefaultTableModel tableModel = new DefaultTableModel(0, 0);
 		
@@ -56,7 +49,8 @@ public class ShowStudentsPage {
 		frame.add(sp);
 	}
 	
-	private void prepareButtons() {
+	@Override
+	public void prepareButtons(JFrame frame) {
 		JButton button1 = new JButton("Back to Register Page");
 		button1.setBounds(25, 400, 175, 50);
 		button1.addActionListener(new ActionListener() {
@@ -77,6 +71,10 @@ public class ShowStudentsPage {
 		
 		frame.add(button1);
 		frame.add(button2);
+	}
+
+	@Override
+	public void prepareTextFields(JFrame frame) {
 	}
 	
 }
