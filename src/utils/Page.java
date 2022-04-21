@@ -13,9 +13,9 @@ public abstract class Page extends JFrame {
 		this.setResizable(false);
 	}
 	
-	public abstract void prepareTable(JFrame frame);
+	public void prepareTable(JFrame frame) {}
 	
-	public abstract void prepareButtons(JFrame frame);
+	public void prepareButtons(JFrame frame) {};
 	
-	public abstract void prepareTextFields(JFrame frame);
+	public void prepareTextFields(JFrame frame) {};
 }

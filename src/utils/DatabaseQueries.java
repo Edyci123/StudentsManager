@@ -88,6 +88,28 @@ public abstract class DatabaseQueries {
 		}
 	}
 	
+	public static void deleteStudent(int index) {
+		Connection conn = null;
+		Statement stmt = null;
+		
+		try {
+			conn = DriverManager.getConnection(url, username, password);
+			stmt = conn.createStatement();
+			String query = "DELETE FROM students WHERE "
+					+ String.format("id = '%d'", index);
+			stmt.execute(query);
+			JOptionPane.showMessageDialog(new JFrame(),
+					"Succesfully deleted!");
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(new JFrame(),
+					e.toString(),
+					"Error",
+					JOptionPane.ERROR_MESSAGE);
+		} finally {
+			closeConnections(conn, stmt);
+		}
+	}
+	
 	public static void updateStudentEmail (String firstName, String lastName, String newEmail) {
 		Connection conn = null;
 		Statement stmt = null;

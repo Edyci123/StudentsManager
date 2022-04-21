@@ -11,12 +11,12 @@ public class Music {
 			// parsing a file so extract the music tracks
 			File file = new File("MusicFile/Music.txt");
 			FileReader fr = new FileReader(file);
-			BufferedReader br = new BufferedReader(fr);
-			String line = null;
+			try (BufferedReader br = new BufferedReader(fr)) {
+				String line = null;
 
-			while ((line = br.readLine()) != null) {
-				music.add(line);
-				System.out.println(line);
+				while ((line = br.readLine()) != null) {
+					music.add(line);
+				}
 			}
 		} catch (IOException e) {
 			System.out.println(e);

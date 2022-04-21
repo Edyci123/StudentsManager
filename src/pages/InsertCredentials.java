@@ -44,9 +44,5 @@ public class InsertCredentials extends Page {
 		frame.add(TextFields.createPanel(new JLabel("username"), username, new Dimensions(50, 100, 250, 25)));
 		frame.add(TextFields.createPanel(new JLabel("password"), password, new Dimensions(50, 150, 250, 25)));
 	}
-
-	@Override
-	public void prepareTable(JFrame frame) {
-	}
 	
 }

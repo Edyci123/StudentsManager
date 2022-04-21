@@ -51,11 +51,5 @@ public class DeleteStudentPage extends Page {
 		frame.add(TextFields.createPanel(new JLabel("First name"), firstName, new Dimensions(50, 100, 250, 25)));
 		frame.add(TextFields.createPanel(new JLabel("Last name"), lastName, new Dimensions(50, 150, 250, 25)));
 	}
-
-	@Override
-	public void prepareTable(JFrame frame) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 }

@@ -2,6 +2,8 @@ package pages;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -9,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 import utils.DatabaseQueries;
 import utils.Page;
+import utils.PopupMenuShowStudents;
 import utils.Student;
 
 @SuppressWarnings("serial")
@@ -43,6 +46,29 @@ public class ShowStudentsPage extends Page {
 		table.getColumnModel().getColumn(2).setPreferredWidth(100);
 		table.getColumnModel().getColumn(3).setPreferredWidth(160);
 		
+		JPopupMenu menu = new PopupMenuShowStudents();
+		table.addMouseListener(new MouseAdapter() {
+			
+			public void mousePressed(MouseEvent e) {
+				System.out.println("Mouse Pressed");
+			}
+			
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					JTable source = (JTable)e.getSource();
+					int row = source.rowAtPoint(e.getPoint());
+					int column = source.columnAtPoint(e.getPoint());
+					
+					if (!source.isRowSelected(row)) {
+						source.changeSelection(row, column, false, false);
+					}
+					
+					menu.show(e.getComponent(), e.getX(), e.getY());
+				}
+			}
+			
+		});
+		
 		JScrollPane sp = new JScrollPane(table);
 		
 		sp.setBounds(45, 50, 400, 200);
@@ -71,10 +97,6 @@ public class ShowStudentsPage extends Page {
 		
 		frame.add(button1);
 		frame.add(button2);
-	}
-
-	@Override
-	public void prepareTextFields(JFrame frame) {
 	}
 	
 }

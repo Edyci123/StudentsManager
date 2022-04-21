@@ -51,9 +51,4 @@ public class UpdateStudentPage extends Page {
 		frame.add(TextFields.createPanel(new JLabel("Last name"), lastName, new Dimensions(50, 150, 250, 25)));
 		frame.add(TextFields.createPanel(new JLabel("New Email"), newEmail, new Dimensions(50, 200, 250, 25)));	
 	}
-
-	@Override
-	public void prepareTable(JFrame frame) {
-	}
-	
 }
