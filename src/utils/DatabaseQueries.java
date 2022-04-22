@@ -10,6 +10,16 @@ public abstract class DatabaseQueries {
 	private static String password;
 	private static final String url = "jdbc:mysql://localhost:3306/firstsql";
 	
+	public static boolean credentialsValid(String username, String password) { 
+		
+		try {
+			Connection conn = DriverManager.getConnection(url, username, password);
+			return true;
+		} catch (SQLException e) {
+			return false;
+		}
+	}
+	
 	public static void setDatabaseCredentials(String username, String password) {
 		DatabaseQueries.setUsername(username);
 		DatabaseQueries.setPassword(password);
@@ -172,7 +182,7 @@ public abstract class DatabaseQueries {
 			if (stmt != null) { stmt.close(); }
 			if (conn != null) { conn.close(); }
 		} catch (SQLException e) {
-			System.out.println("aici" + e);
+			System.out.println(e);
 		}
 	}
 
