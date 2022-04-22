@@ -46,12 +46,8 @@ public class ShowStudentsPage extends Page {
 		table.getColumnModel().getColumn(2).setPreferredWidth(100);
 		table.getColumnModel().getColumn(3).setPreferredWidth(160);
 		
-		JPopupMenu menu = new PopupMenuShowStudents();
+		JPopupMenu menu = new PopupMenuShowStudents(this);
 		table.addMouseListener(new MouseAdapter() {
-			
-			public void mousePressed(MouseEvent e) {
-				System.out.println("Mouse Pressed");
-			}
 			
 			public void mouseReleased(MouseEvent e) {
 				if (e.isPopupTrigger()) {
@@ -78,7 +74,7 @@ public class ShowStudentsPage extends Page {
 	@Override
 	public void prepareButtons(JFrame frame) {
 		JButton button1 = new JButton("Back to Register Page");
-		button1.setBounds(25, 400, 175, 50);
+		button1.setBounds(160, 400, 175, 50);
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new RegisterPage();
@@ -86,17 +82,7 @@ public class ShowStudentsPage extends Page {
 			}
 		});
 		
-		JButton button2 = new JButton("Update a student!");
-		button2.setBounds(287, 400, 175, 50);
-		button2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new UpdateStudentPage();
-				frame.dispose();
-			}
-		});
-		
 		frame.add(button1);
-		frame.add(button2);
 	}
 	
 }

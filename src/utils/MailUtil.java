@@ -43,4 +43,34 @@ public class MailUtil {
 		}
 	}
 	
+	public static void sendUpdateEmail(String firstName, String lastName, String newEmail) {
+		String host = "smtp.gmail.com";
+		
+		Properties properties = System.getProperties();
+		properties.put("mail.smtp.host", host);
+		properties.put("mail.smtp.port", "465");
+		properties.put("mail.smtp.ssl.enable", "true");
+		properties.put("mail.smtp.auth", "true");
+		
+		Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(senderEmail, password);
+			}
+		});
+		
+		session.setDebug(true);
+
+		try {
+			MimeMessage message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(senderEmail));
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(newEmail));
+			message.setSubject("Registered");
+			message.setText(String.format("Your email has been changed! Music: %s", firstName, lastName, Music.getRandMusicLink()));
+			Transport.send(message);
+		} catch (MessagingException e) {
+			System.out.println(e);
+		}
+		
+	}
+	
 }

@@ -26,7 +26,7 @@ public class RegisterPage extends Page {
 	@Override
 	public void prepareButtons(JFrame frame) {
 		JButton button1 = new JButton("Register a new student!");
-		button1.setBounds(25, 325, 175, 50);
+		button1.setBounds(25, 400, 175, 50);
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (Student.check(new Student(firstName.getText(), lastName.getText(), email.getText()))) {
@@ -42,7 +42,7 @@ public class RegisterPage extends Page {
 		}); 
 		
 		JButton button2 = new JButton("Show students!");
-		button2.setBounds(287, 325, 175, 50);
+		button2.setBounds(287, 400, 175, 50);
 		button2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new ShowStudentsPage();
@@ -50,29 +50,9 @@ public class RegisterPage extends Page {
 			}
 		});
 		
-		JButton button3 = new JButton("Delete a Student");
-		button3.setBounds(25, 400, 175, 50);
-		button3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new DeleteStudentPage();
-				frame.dispose();
-			}
-		});
-		
-		JButton button4 = new JButton("Update Student");
-		button4.setBounds(287, 400, 175, 50);
-		button4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new UpdateStudentPage();
-				frame.dispose();
-			}
-		});
-		
 		
 		frame.add(button1);
 		frame.add(button2);
-		frame.add(button3);
-		frame.add(button4);
 	}
 	
 	@Override

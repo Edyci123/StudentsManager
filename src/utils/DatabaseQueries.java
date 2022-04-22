@@ -42,7 +42,10 @@ public abstract class DatabaseQueries {
 		Statement stmt = null;
 		
 		if (studentAlreadyExtists(s.getFirstName(), s.getLastName(), s.getEmail())) { //checking the integrity of the answer
-			System.out.println("Student already exists!");
+			JOptionPane.showMessageDialog(new JFrame(),
+					"Student already exists!",
+					"Error",
+					JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		
@@ -66,7 +69,7 @@ public abstract class DatabaseQueries {
 		}	
 	}
 	
-	public static void deleteStudent(String firstName, String lastName) {
+	public static void deleteStudent(String email) {
 		Connection conn = null;
 		Statement stmt = null;
 		
@@ -74,7 +77,7 @@ public abstract class DatabaseQueries {
 			conn = DriverManager.getConnection(url, username, password);
 			stmt = conn.createStatement();
 			String query = "DELETE FROM students WHERE "
-					+ String.format("firstName = '%s' AND lastName = '%s'", firstName, lastName);
+					+ String.format("email = '%s'", email);
 			stmt.execute(query);
 			JOptionPane.showMessageDialog(new JFrame(),
 					"Succesfully deleted!");
@@ -88,29 +91,7 @@ public abstract class DatabaseQueries {
 		}
 	}
 	
-	public static void deleteStudent(int index) {
-		Connection conn = null;
-		Statement stmt = null;
-		
-		try {
-			conn = DriverManager.getConnection(url, username, password);
-			stmt = conn.createStatement();
-			String query = "DELETE FROM students WHERE "
-					+ String.format("id = '%d'", index);
-			stmt.execute(query);
-			JOptionPane.showMessageDialog(new JFrame(),
-					"Succesfully deleted!");
-		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(new JFrame(),
-					e.toString(),
-					"Error",
-					JOptionPane.ERROR_MESSAGE);
-		} finally {
-			closeConnections(conn, stmt);
-		}
-	}
-	
-	public static void updateStudentEmail (String firstName, String lastName, String newEmail) {
+	public static void updateStudentEmail (String firstName, String lastName, String oldEmail, String newEmail) {
 		Connection conn = null;
 		Statement stmt = null;
 		
@@ -119,7 +100,7 @@ public abstract class DatabaseQueries {
 			stmt = conn.createStatement();
 			String query = "UPDATE students "
 					+ String.format("SET email = '%s' ", newEmail) 
-					+ String.format("WHERE firstName = '%s' AND lastName = '%s'", firstName, lastName);
+					+ String.format("WHERE firstName = '%s' AND lastName = '%s' AND email = '%s'", firstName, lastName, oldEmail);
 			stmt.execute(query);
 			JOptionPane.showMessageDialog(new JFrame(),
 					"Succesfully updated!");
@@ -142,7 +123,7 @@ public abstract class DatabaseQueries {
 		try {
 			conn = DriverManager.getConnection(url, username, password);
 			stmt = conn.createStatement();
-			String query = String.format("SELECT 1 FROM students WHERE firstname = '%s' AND lastname = '%s' OR email = '%s'", firstName, lastName, email);    
+			String query = String.format("SELECT 1 FROM students WHERE email = '%s'", email);    
 			ResultSet rs = stmt.executeQuery(query);
 			if (rs.next()) {
 				res = true;
@@ -171,12 +152,10 @@ public abstract class DatabaseQueries {
 			String query = "SELECT * FROM students";
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
-				int id = rs.getInt("id");
 				String firstname = rs.getString("firstname");
 				String lastname = rs.getString("lastname");
 				String email = rs.getString("email");
 				res.add(new Student(firstname, lastname, email));
-				System.out.println(String.format("%s %s %s %s", id, firstname, lastname, email));
 			}
 			
 		} catch (SQLException e) {
