@@ -8,21 +8,23 @@ import javax.swing.*;
 public abstract class DatabaseQueries {
 	private static String username;
 	private static String password;
-	private static final String url = "jdbc:mysql://localhost:3306/firstsql";
+	private static String url = "jdbc:mysql://localhost:3306/firstSQL";
 	
 	public static boolean credentialsValid(String username, String password) { 
-		
+		Connection conn = null;
 		try {
-			Connection conn = DriverManager.getConnection(url, username, password);
+			conn = DriverManager.getConnection(url, username, password);
 			return true;
 		} catch (SQLException e) {
 			return false;
-		}
+		} finally {
+			closeConnections(conn);
+		}	
 	}
 	
 	public static void setDatabaseCredentials(String username, String password) {
-		DatabaseQueries.setUsername(username);
-		DatabaseQueries.setPassword(password);
+		setUsername(username);
+		setPassword(password);
 	}
 	
 	public static void createNewTabel(String tableName) { // creating a table for storing the students
@@ -185,6 +187,14 @@ public abstract class DatabaseQueries {
 			System.out.println(e);
 		}
 	}
+	
+	private static void closeConnections(Connection conn) {
+		try {
+			if (conn != null) { conn.close(); }
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+	}
 
 	public static String getUsername() {
 		return username;
@@ -205,4 +215,5 @@ public abstract class DatabaseQueries {
 	public static String getUrl() {
 		return url;
 	}
+
 }

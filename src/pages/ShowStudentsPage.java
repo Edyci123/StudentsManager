@@ -1,5 +1,6 @@
 package pages;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -18,6 +19,7 @@ import utils.Student;
 public class ShowStudentsPage extends Page {
 	public ShowStudentsPage() {
 		super();
+		super.prepareLabel();
 		prepareTable(this);
 		prepareButtons(this);
 		this.setVisible(true);
@@ -67,7 +69,7 @@ public class ShowStudentsPage extends Page {
 		
 		JScrollPane sp = new JScrollPane(table);
 		
-		sp.setBounds(45, 50, 400, 200);
+		sp.setBounds(45, 150, 400, 200);
 		frame.add(sp);
 	}
 	

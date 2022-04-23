@@ -18,6 +18,7 @@ public class RegisterPage extends Page {
 	
 	public RegisterPage() {
 		super();
+		super.prepareLabel();
 		prepareButtons(this);
 		prepareTextFields(this);
 		this.setVisible(true);
@@ -57,8 +58,8 @@ public class RegisterPage extends Page {
 	
 	@Override
 	public void prepareTextFields(JFrame frame) {	
-		frame.add(TextFields.createPanel(new JLabel("First name"), firstName, new Dimensions(100, 125, 250, 25))); // adding panels with label and text field to the frame
-		frame.add(TextFields.createPanel(new JLabel("Last name"), lastName, new Dimensions(100, 175, 250, 25)));
-		frame.add(TextFields.createPanel(new JLabel("Email"), email, new Dimensions(100, 225, 250, 25)));	
+		frame.add(TextFields.createPanel(new JLabel("First name"), firstName, new Dimensions(110, 200, 250, 25))); // adding panels with label and text field to the frame
+		frame.add(TextFields.createPanel(new JLabel("Last name"), lastName, new Dimensions(110, 250, 250, 25)));
+		frame.add(TextFields.createPanel(new JLabel("Email"), email, new Dimensions(110, 300, 250, 25)));	
 	}
 }

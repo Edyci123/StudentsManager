@@ -17,6 +17,7 @@ public class InsertCredentials extends Page {
 	
 	public InsertCredentials() {
 		super();
+		super.prepareLabel();
 		prepareButtons(this);
 		prepareTextFields(this);
 		this.setVisible(true);
@@ -26,12 +27,11 @@ public class InsertCredentials extends Page {
 	public void prepareButtons(JFrame frame) {
 		JButton button1 = new JButton("Register");
 		button1.setBounds(140, 370, 200, 50);
-		button1.addActionListener(new ActionListener() { // adding action listener to a button
+		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// if you have no table names students uncomment the next line
-				// DatabaseQueries.createNewTabel("students");
 				if (DatabaseQueries.credentialsValid(username.getText(), new String(password.getPassword()))) {
 					DatabaseQueries.setDatabaseCredentials(username.getText(), new String(password.getPassword()));
+					DatabaseQueries.createNewTabel("students");
 					new RegisterPage();
 					frame.dispose();
 				} else {
@@ -48,8 +48,8 @@ public class InsertCredentials extends Page {
 	
 	@Override
 	public void prepareTextFields(JFrame frame) {
-		frame.add(TextFields.createPanel(new JLabel("username"), username, new Dimensions(110, 175, 250, 25)));
-		frame.add(TextFields.createPanel(new JLabel("password"), password, new Dimensions(110, 225, 250, 25)));
+		frame.add(TextFields.createPanel(new JLabel("Username"), username, new Dimensions(110, 200, 250, 25)));
+		frame.add(TextFields.createPanel(new JLabel("Password"), password, new Dimensions(110, 250, 250, 25)));
 	}
 	
 }

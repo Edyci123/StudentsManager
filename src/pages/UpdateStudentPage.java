@@ -1,5 +1,6 @@
 package pages;
 
+import java.awt.Dimension;
 import java.awt.event.*;
 
 import javax.swing.*;
@@ -19,6 +20,7 @@ public class UpdateStudentPage extends Page {
 	
 	public UpdateStudentPage(String firstName, String lastName, String oldEmail, ShowStudentsPage ssp, JTable table) {
 		super();
+		this.prepareLabel();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.oldEmail = oldEmail;
@@ -49,6 +51,15 @@ public class UpdateStudentPage extends Page {
 	
 	@Override
 	public void prepareTextFields(JFrame frame) {
-		frame.add(TextFields.createPanel(new JLabel("New Email"), newEmail, new Dimensions(25, 50, 250, 25)));	
+		frame.add(TextFields.createPanel(new JLabel("New Email"), newEmail, new Dimensions(25, 125, 250, 25)));	
+	}
+	
+	@Override
+	public void prepareLabel() {
+		JLabel label = new JLabel();
+		label.setIcon(new ImageIcon("Images/logoTiny.png"));
+		Dimension size = label.getPreferredSize();
+		label.setBounds(50, 0, size.width, size.height);
+		this.add(label);
 	}
 }

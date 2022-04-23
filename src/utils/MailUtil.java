@@ -36,7 +36,7 @@ public class MailUtil {
 			message.setFrom(new InternetAddress(senderEmail));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(recieverEmail));
 			message.setSubject("Registered");
-			message.setText(String.format("Thank you for your registration, %s %s. Music: %s", firstName, lastName, Music.getRandMusicLink()));
+			message.setText(String.format("Thank you for your registration, %s %s. Music: %s.", firstName, lastName, Music.getRandMusicLink()));
 			Transport.send(message);
 		} catch (MessagingException e) {
 			System.out.println(e);
@@ -65,7 +65,7 @@ public class MailUtil {
 			message.setFrom(new InternetAddress(senderEmail));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(newEmail));
 			message.setSubject("Registered");
-			message.setText(String.format("Your email has been changed! Music: %s", firstName, lastName, Music.getRandMusicLink()));
+			message.setText(String.format("Your email has been changed! Music: %s.", Music.getRandMusicLink()));
 			Transport.send(message);
 		} catch (MessagingException e) {
 			System.out.println(e);
